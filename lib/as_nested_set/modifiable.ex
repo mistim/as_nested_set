@@ -60,7 +60,7 @@ defmodule AsNestedSet.Modifiable do
         {right_column, left + 1},
         {parent_id_column, parent_id}
       ]))
-    |> repo.insert!
+    |> repo.insert
   end
 
   defp do_safe_create(repo, %{__struct__: struct} = new_model, target, :right) do
@@ -91,7 +91,7 @@ defmodule AsNestedSet.Modifiable do
         {right_column, right + 2},
         {parent_id_column, parent_id}
       ]))
-    |> repo.insert!
+    |> repo.insert
   end
 
   defp do_safe_create(repo, %{__struct__: struct} = new_model, target, :child) do
@@ -123,7 +123,7 @@ defmodule AsNestedSet.Modifiable do
         {right_column, right + 1},
         {parent_id_column, node_id}
       ]))
-    |> repo.insert!
+    |> repo.insert
   end
 
   defp do_safe_create(repo, %{__struct__: struct} = new_model, _target, :root) do
@@ -133,7 +133,7 @@ defmodule AsNestedSet.Modifiable do
     |> set_field(:left, right_most + 1)
     |> set_field(:right, right_most + 2)
     |> set_field(:parent_id, nil)
-    |> repo.insert!
+    |> repo.insert
 
     new_model
   end
@@ -170,7 +170,7 @@ defmodule AsNestedSet.Modifiable do
     |> set_field(:left, left)
     |> set_field(:right, right + 2)
     |> set_field(:parent_id, parent_id)
-    |> repo.insert!
+    |> repo.insert
 
     node_id = get_field(target, :node_id)
     node_id_column = get_column_name(target, :node_id)
